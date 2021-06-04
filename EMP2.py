@@ -14,6 +14,7 @@ video_capture = cv2.VideoCapture(0)
 facecascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 
+
 fishface = cv2.face.FisherFaceRecognizer_create()
 try:
     fishface.read("trained_emoclassifier.xml")
@@ -82,26 +83,25 @@ def recognize_emotion():
 
     mp = Dispatch("WMPlayer.OCX")
     if pred == 0:
-        tune = mp.newMedia("path of / the / song /angry.mp3")
+        tune = mp.newMedia('songs/happy.mp3')
         print("Angry song is playing.")
     elif pred == 1:
-        tune = mp.newMedia("path of / the / song /happy.mp3")
+        tune = mp.newMedia('songs/happy.mp3')
         print("Happy song is playing.")
     elif pred == 2:
-        tune = mp.newMedia("path of / the / song /sad.mp3")
+        tune = mp.newMedia('songs/happy.mp3')
         print("Sad song is playing.")
     elif pred == 3:
-        tune = mp.newMedia("path of / the / song /nuetral.mp3")
+        tune = mp.newMedia('songs/happy.mp3')
         print("Nuetral song is playing.")
     elif pred == 4:
-        tune = mp.newMedia("path of / the / song /surprise.mp3")
+        tune = mp.newMedia('songs/happy.mp3')
         print("Surprise song is playing.")
 
     mp.currentPlaylist.appendItem(tune)
     mp.controls.play()
     sleep(1)
     mp.controls.playItem(tune)
-    # to stop playing use
     input("Press Enter to stop playing")
     mp.controls.stop()
     filter.apply_filter()
@@ -128,10 +128,10 @@ def detect_face():
 
 while True:
     detect_face()
-    if args.update:  # If update flag is present, call update function
+    if args.update:  
         update_model(emotions)
         break
-    elif len(facedict) == 1:  # otherwise it's regular a runtime, continue normally with emotion detection functionality
+    elif len(facedict) == 1:  
         recognize_emotion()
         break
 
